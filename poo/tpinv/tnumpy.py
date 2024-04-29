@@ -1,39 +1,39 @@
 import numpy as np
 
-class AreglosNumpy:
+class InventarioProductos:
     def __init__(self):
-        self.arreglo1 = np.arr1([234, 452, 567, 823, 900])
-        self.arreglo2 = np.arr2([22, 15, 54, 70, 15, 34, 49, 15])
-        self.arrcopy = None
-        self.arrview = None
-        self.fappend = None
-        self.fsplit = None
-        self.fwhere = None
-        self.fsort = None
+        #Lista de cantidades de productos en almacén
+        self.productosAlmacen = np.array([234, 452, 567, 823, 900])
         
-#funcion copy
-def copy (self):
-    self.arrcopy = np.copy(self.arreglo1)
+        #Lista de ventas diarias de un producto durante una semana
+        self.ventasDiarias = np.array([22, 15, 54, 70, 15, 34, 49, 15])
+        self.copiaInventario = None
+        self.vistaVentas = None
+        self.juntarVentas = None
+        self.dividirInventario = None
+        self.dondeEncontrar = None
+        self.ordenarInventario = None
 
+    # Función para hacer una copia del inventario de productos
+    def hacer_copia(self):
+        self.copiaInventario = np.copy(self.productos_en_almacen)
 
-#funcion view
-def view(self):
-    self.arrview = np.view(self.arreglo2)
+    # Función para obtener una vista de las ventas diarias
+    def obtener_vista_ventas(self):
+        self.vistaVentas = np.view(self.ventas_diarias)
 
-#funcion append
+    # Función para agregar las ventas diarias al inventario
+    def agregar_ventas(self):
+        self.juntarVentas = np.concatenate((self.productos_en_almacen, self.ventas_diarias))
 
-def append(self):
-    self.fappend = np.concatenate((self.arreglo1, self.arreglo2))
+    # Función para dividir el inventario en partes
+    def dividir_inventario(self):
+        self.dividirInventario = np.split(self.productos_en_almacen, 3)
 
-#funcion split
-def split(self):
-    self.fsplit = np.split(self.arreglo1, 3)
+    # Función para encontrar la posición de un valor específico en las ventas
+    def donde_encontrar_valor(self):
+        self.dondeEncontrar = np.where(self.ventas_diarias == 15)
 
-#funcion where
-def where(self):
-    self.fwhere = np.where(self.arreglo2 == 15)
-
-#funcion sort
-def sort(self):
-    self.fsort = np.sort(self.arreglo1)
-
+    # Función para ordenar el inventario de productos
+    def ordenar_inventario(self):
+        self.ordenarInventario = np.sort(self.productos_en_almacen)
