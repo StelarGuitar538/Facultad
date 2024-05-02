@@ -21,7 +21,7 @@ class gesMov:
 este, no tuvo movimientos durante el mes de abril 2024."""
 
     def movAbril(self):
-        numtar = input("ingrese numero de tarjeta")
+        numtar = input("ingrese numero de tarjeta ")
         for i in self.__lista:
             if numtar == i.numtar:
                 print(f"apellido {gesClientes.buscarClientePorApellido(i)} nombre {gesClientes.buscarClientePorNom(i)} {gesClientes.verificarMov(i)}")
@@ -31,3 +31,18 @@ punto a. """
 
     def ordenar(self):
         self.__lista.sort()
+        
+def movAbril(self):
+    numtar = input("Ingrese número de tarjeta: ")
+    movimientosCliente = [movimiento for movimiento in self.__lista if movimiento.numtar == numtar]
+    if movimientosCliente:
+        cliente = gesClientes.buscarClientePorTarjeta(numtar)
+        if cliente:
+            print(f"Apellido: {cliente.apellido}, Nombre: {cliente.nombre}")
+        else:
+            print("Cliente no encontrado.")
+    else:
+        print("El cliente no tuvo movimientos durante abril de 2024.")
+
+def ordenar(self):
+    self.__lista.sort(key=lambda x: x.numtar)

@@ -23,28 +23,31 @@ class gesClientes:
             if cliente.dni == dni:
                 return cliente    
                    
+    
     def actualizarSaldo(self, numeroTarjeta):
-        return self.__lista[self.__lista['numeroTarjeta'] == numeroTarjeta]
+        for cliente in self.__lista:
+            if cliente.numtar == numeroTarjeta:
+                return cliente
     
     def listado(self):
-        dni = input("ingrese un dni")
-        cliente = gesClientes.buscarClientePorDni(dni)
+        dni = input("Ingrese un DNI: ")
+        cliente = self.buscarClientePorDni(dni)
         if cliente:
-            movClientes = gesClientes.actualizarSaldo(cliente)
-            print(f"Cliente: {cliente}")
-            print(f"Número de tarjeta: {cliente.numtar}")
-            print(f"Saldo anterior: {cliente.saldo}")
-            print("Movimientos:")
-            print("Fecha     Descripción                Importe   Tipo de movimiento")
-            for i in self.__lista:
-                print(f"{i.fecha}  {i.desc:30} {i.imp}      {i.tmov}")
-                saldoAct = i.saldo
-                for i in self.__lista:
-                    if i.tmov == "C":
-                        saldoAct += i.imp
-                    elif i.tmov == "P":
-                        saldoAct -= i.imp
-                print(f"saldo actualizado: {saldoAct}")
+          movClientes = self.actualizarSaldo(cliente)
+        print(f"Cliente: {cliente}")
+        print(f"Número de tarjeta: {cliente.numtar}")
+        print(f"Saldo anterior: {cliente.saldo}")
+        print("Movimientos:")
+        print("Fecha     Descripción                Importe   Tipo de movimiento")
+        saldoAct = cliente.saldo
+        for movimiento in movClientes:
+            print(f"{movimiento.fecha}  {movimiento.desc} {movimiento.imp}      {movimiento.tmov}")
+            if movimiento.tmov == "C":
+                saldoAct += movimiento.imp
+            elif movimiento.tmov == "P":
+                saldoAct -= movimiento.imp
+        print(f"Saldo actualizado: {saldoAct}")
+        
         
            
     def buscarClientePorApellido(self, ap):
@@ -63,8 +66,8 @@ class gesClientes:
             if cliente.dni == dni:
                 if cliente.tmov == "C" or cliente.tmov == "P":
                   bandera = True
-                if bandera == True:
-                    print("si hubo movimientos en el mes de abril")
+        if bandera == True:
+            print("si hubo movimientos en el mes de abril")
         
-                elif bandera == False:
-                    print("no hubo movimientos en abril")
+        elif bandera == False:
+            print("no hubo movimientos en abril")
