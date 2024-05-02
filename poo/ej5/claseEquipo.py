@@ -10,8 +10,25 @@ class Equipo:
         self.__identificadorDelEquipo = identificadorDelEquipo
         self.__nombreDelEquipo = nombreDelEquipo
         self.__golesAFavor = golesAFavor
-        self.__GolesEnContra = GolesEnContra
-        self.__DiferenciaDeGoles = DiferenciaDeGoles
+        self.__golesEnContra = GolesEnContra
+        self.__diferenciaDeGoles = DiferenciaDeGoles
         self.__puntos = puntos
         
         
+    def getid(self):
+        return(self.__identificadorDelEquipo)
+    
+    def getNomEq(self):
+        return(self.__nombreDelEquipo)
+    
+    def getgolesAFavor(self):
+        return(self.__golesAFavor)
+    
+    def getgolesEnContra(self):
+        return(self.__golesEnContra)
+    
+    def getdifGoles(self):
+        return(self.__diferenciaDeGoles)
+    
+    def getpuntos(self):
+        return(self.__puntos)

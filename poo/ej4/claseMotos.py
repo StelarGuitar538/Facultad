@@ -11,11 +11,13 @@ class Motos:
         self.nya = nya
         self.km = km
   
-    def __lt__ (self, other):
-        return self.patente < other.patente
+    
     
     def getPatente(self):
         return self.__patente  
+    
+    def getMarca(self):
+        return self.__marca
     
     def mostrarMoto(self):
         print("patente {}, marca{}, nya{}, km{}", format(self.__patente, self.__marca, self.__nombreYApellidoDelConductor, self.__kilometraje))
