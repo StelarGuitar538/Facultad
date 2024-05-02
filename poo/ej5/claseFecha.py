@@ -13,4 +13,17 @@ class Fecha:
         self.__cantidadDeGolesVisitante = cgv
         
         
-        
+    def getFechaPartido(self):
+            return(self.__fechaDelPartido)
+    
+    def getidl(self):
+        return(self.__identificadorDelEquipoLocal)
+    
+    def getidv(self):
+        return(self.__identificadorDelEquipoVisitante)
+    
+    def getcantgl(self):
+        return(self.__cantidadDeGolesLocal)
+    
+    def getcantgv(self):
+        return(self.__cantidadDeGolesVisitante)
