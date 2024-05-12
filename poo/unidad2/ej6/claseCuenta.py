@@ -1,4 +1,4 @@
-
+from claseTransacciones import transacciones
 class Cuenta:
     __apellido: str
     __nombre: str
@@ -30,6 +30,15 @@ class Cuenta:
     
     def getPorc(self):
         return self.__porcrend
+    
+    
+    def actTrans(self, transacciones):
+        tipo = transacciones.getTipo()
+        imp = transacciones.getImp()
+        if tipo == "D":
+            self.__saldo -= imp
+        elif tipo == "C":
+            self.__saldo += imp
     
     def nuevoPorc (self):
         nuevoPorc = input("ingrese nuevo porcentaje")

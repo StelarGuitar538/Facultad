@@ -15,28 +15,20 @@ class gesTrans:
         for fila in reader:
             ntrans: transacciones(int(fila[0]), int(fila[1]), float(fila[2]), (fila[3]) ) # type: ignore
             self.__lista.append(ntrans)
-            archivo.close()
+        archivo.close()
             
-    
-    def actTrans(self, cvu):
-        if cvu:
-          if transacciones.getTipo() == "D":
-              Cuenta.__saldo -= transacciones.getImp()
-        elif transacciones.getTipo() == "C":
-            Cuenta.__saldo += transacciones.getImp()
-        
-          
+            
     def procesarTransacciones(self):
-        cvu = input("ingrese cvu")
-        i = 0
-        b = False
-        while i< len(self.__lista) and b == False:
-         if len(self.__lista) == cvu:
-            print(f"saldo inicial: {Cuenta.getSaldo()}")
-            for cvu in self.__lista:
-                gesTrans.actTrans(cvu)
-        else:
-            i+1
+        cvu =  input("ingrese cvu")
+        for cuenta in self.__lista:
+            if cuenta.getCVU() == cvu:
+                print(f"saldo inicial: {cuenta.getSaldo()}")
+                for transaccion in self.__lista:
+                    cuenta.actTrans(transaccion)
+                    print(f"saldo actualizado {cuenta.getSaldo()}")
+                    break
+        else: print("no se encontro cvu")
+                    
             
              
     def actualizarCsv(self):
