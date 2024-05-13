@@ -21,7 +21,5 @@ cada uno de los departamentos del edificio"""
 
     def punto1 (self):
         nomEdi = input("ingrese nombre de edificio")
-        bandera = False
-        while nomEdi:
-            Dptos.getnya()
+       
             

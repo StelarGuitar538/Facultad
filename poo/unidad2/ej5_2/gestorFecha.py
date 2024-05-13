@@ -13,6 +13,9 @@ class gesFecha:
         self.__cantidad =0
         self.__dimension = 0
         self.__incremento = 1
+        
+    def getArreglo(self):
+        return self.__arregloFecha
  
     def agregar(self, c):
         if self.__cantidad == self.__dimension:
@@ -26,7 +29,7 @@ class gesFecha:
         reader = csv.reader(archivo, delimiter=";")
         for fila in reader:
             nuevaFecha = Fecha((fila[0]), (fila[1]),(fila[2]),int(fila[3]),int(fila[4]))
-            gesFecha.agregar(self, nuevaFecha)
+            self.agregar(nuevaFecha)
         archivo.close()
         
     def mostrar(self):
