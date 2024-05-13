@@ -1,4 +1,6 @@
 from claseEquipo import Equipo
+from claseFecha import Fecha
+from gestorFecha import gesFecha
 import csv
 
 class gesEquipo:
@@ -19,3 +21,13 @@ class gesEquipo:
     def mostrar(self):
         for fecha in self.__lista:
             print(fecha)
+            
+    
+    def puntoc(self):
+        obtenerFecha = gesFecha.getArreglo()
+        for equipo in self.__lista:
+            print(f"equipo: {Equipo.getNomEq(equipo)}")
+            for fecha in obtenerFecha:
+             print(f"fecha: {obtenerFecha}, goles a favor: {Equipo.getgolesAFavor(fecha)}, goles en contra: {Equipo.getgolesEnContra(fecha)}, diferencia de goles: {Equipo.getdifGoles(fecha)}, puntos: {Equipo.getpuntos(fecha)}")
+             
+    

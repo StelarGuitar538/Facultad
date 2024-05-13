@@ -15,7 +15,7 @@ class Equipo:
         self.__puntos = puntos
         
     def __str__ (self):
-        return f"{self.__identificadorDelEquipo}-{self.__nombreDelEquipo}-{self.__golesAFavor}-{self.__golesEnContra}-{self.__diferenciaDeGoles}-{self.__puntos}"
+        return f"{self.__nombreDelEquipo}\n-{self.__golesAFavor}-{self.__golesEnContra}-{self.__diferenciaDeGoles}-{self.__puntos}"
     
     def getid(self):
         return(self.__identificadorDelEquipo)

@@ -8,6 +8,7 @@ def test():
  while True:
     print("menu de opciones")
     print("1, carga")
+    print("2, tabla")
     
     op = input("ingrese op")
     
@@ -16,3 +17,6 @@ def test():
         e.inicializar1() 
         f.mostrar()
         e.mostrar()
+        
+    elif op == "2":
+        e.puntoc()
