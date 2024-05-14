@@ -24,10 +24,13 @@ class gesEquipo:
             
     
     def puntoc(self):
-        obtenerFecha = gesFecha.getArreglo()
+        gestor = gesFecha()
+        arreglo = gestor.getArreglo()
         for equipo in self.__lista:
             print(f"equipo: {Equipo.getNomEq(equipo)}")
-            for fecha in obtenerFecha:
-             print(f"fecha: {obtenerFecha}, goles a favor: {Equipo.getgolesAFavor(fecha)}, goles en contra: {Equipo.getgolesEnContra(fecha)}, diferencia de goles: {Equipo.getdifGoles(fecha)}, puntos: {Equipo.getpuntos(fecha)}")
+            for fecha in arreglo:
+             print(f"fecha: {Fecha.getFechaPartido(fecha)}, goles a favor: {Equipo.getgolesAFavor(fecha)}, goles en contra: {Equipo.getgolesEnContra(fecha)}, diferencia de goles: {Equipo.getdifGoles(fecha)}, puntos: {Equipo.getpuntos(fecha)}")
+             
+             
              
     
