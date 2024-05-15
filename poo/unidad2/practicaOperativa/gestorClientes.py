@@ -52,4 +52,18 @@ class gesClientes:
             return nya
             
         
+    def movAbril(self, m):
+        numtar = input("ingrese numero de tarjeta")
+        i=0
+        b= False
+        while not b and i< len(self.__lista):
+            print("entra while")
+            if self.__lista[i].getnumtar() == numtar:
+                print(f"apellido {self.__lista[i].getap()} nombre: {self.__lista[i].getnom()}")
+                b= True
+            else: i+=1
+        print(m.buscarMov(numtar))
+        
+            
+            
         
