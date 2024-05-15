@@ -44,4 +44,22 @@ class gesMov:
     
 
             
+    def informarMov(self, c):
+        numTar = int(input("ingrese numero de tarjeta"))
+        nya = c.buscarCliente(numTar)
+        b=False
+        i=0
+        while not b and i<len(self.__arregloMov):
+            print("entra al while")
+            if self.__arregloMov[i].getNumTar1() == numTar:
+                print("entra al if")
+                b= True
+            else: i+=1
+        
+        print(nya)    
+        if b==True:
+            print("el cliente tuvo movimientos en el mes de abril")
+            
+        else:
+            print("el cliente no tuvo movimientos en el mes de abril")
             

@@ -38,7 +38,18 @@ class gesClientes:
         else: print("no se encontro")
     
     
-
-       
+    def buscarCliente(self, numtar):
+        b= False
+        i=0
+        while not b and i< len(self.__lista):
+            if self.__lista[i].getNumTar() == numtar:
+              nya = self.__lista[i].getap() + self.__lista[i].getnom()
+              b = True
+            else: i+=1
         
+        if b == True:
+            print("se encontro nombre y apellido")
+            return nya
             
+        
+        

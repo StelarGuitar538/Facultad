@@ -8,6 +8,7 @@ def test():
         print("menu de opciones")
         print("1, carga")
         print("2, puntoa")
+        print("3, puntob")
         
         op = input("ingrese op: ")
         
@@ -21,4 +22,7 @@ def test():
             dni = input("ingrese dni: ")
             funcion = c.actualiza(dni, m)
             print(funcion)
-    
+
+        elif op == "3":
+            m.informarMov(c)
+            
