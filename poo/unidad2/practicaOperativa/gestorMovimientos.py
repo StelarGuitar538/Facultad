@@ -22,11 +22,26 @@ class gesMov:
         self.__cantidad += 1
         
     def inicializar(self):
-        archivo = open("MovimientosAbril2024.csv", "r")
+        archivo = open("poo/unidad2/practicaOperativa/archivoscsv/MovimientosAbril204.csv", "r")
         reader = csv.reader(archivo, delimiter=";")
         for fila in reader:
             nMov = Movimientos((fila[0]), (fila[1]), (fila[2]), fila[3], float(fila[4]))
             self.agregar(nMov)
         archivo.close()
         
-        
+    def mostrar(self):
+        for mov in self.__arregloMov:
+            print(mov)
+            
+    def ActualizaSaldo(self, saldo, tar):
+        for movimiento in self.__arregloMov:
+             if movimiento.getNumTar() == tar:
+                    if movimiento.getMov() == "C":
+                        saldo += movimiento.getImp()
+                        print(saldo)
+                    else: saldo -= movimiento.getImp()
+        return saldo
+    
+
+            
+            

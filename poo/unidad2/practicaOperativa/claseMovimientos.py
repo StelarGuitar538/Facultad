@@ -12,6 +12,8 @@ class Movimientos:
         self.__tmov = tmov
         self.__imp = imp
         
+    def __str__ (self):
+        return f"{self.__fecha}-{self.__desc}-{self.__imp}-{self.__tmov}"
     
     def getNumTar(self):
         return self.__numtar

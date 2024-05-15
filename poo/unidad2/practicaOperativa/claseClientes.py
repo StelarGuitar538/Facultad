@@ -13,7 +13,7 @@ class Clientes:
         self.__saldo = saldo
         
     def __str__(self):
-      return f"{self.apellido} {self.nombre} - Número de tarjeta: {self.numero_tarjeta}"
+      return f"{self.__apellido} {self.__nombre} {self.__dni} {self.__numtar} {self.__saldo}"
         
         
     def getnom (self):
@@ -30,3 +30,6 @@ class Clientes:
     
     def getsaldo(self):
         return self.__saldo
+    
+    def setSaldo(self, s):
+        self.__saldo = s

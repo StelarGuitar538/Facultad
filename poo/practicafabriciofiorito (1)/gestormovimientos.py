@@ -17,7 +17,7 @@ class gestormovimiento:
     
     def instanciar(self):
         i = 0
-        f = open("/home/la-net-05/Escritorio/practica1/movimientosabril2024.csv", "r")
+        f = open("poo/practicafabriciofiorito (1)/archivoscsv/movimientosabril2024.csv", "r")
         reader = csv.reader(f, delimiter=",")
         for linea in reader:
             if all(linea):

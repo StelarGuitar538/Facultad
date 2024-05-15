@@ -6,7 +6,7 @@ class gestorcliente:
         self.__listaclientes = []
 
     def instanciar(self):
-        f = open("/home/la-net-05/Escritorio/practica1/clientesabril.csv", "r")
+        f = open("poo/practicafabriciofiorito (1)/archivoscsv/clientesabril.csv", "r")
         reader = csv.reader(f, delimiter=",")
         for linea in reader:
             if all(linea):
