@@ -7,8 +7,9 @@ def test():
     while True:
         print("menu de opciones")
         print("1, carga")
-        print("2, puntoa")
-        print("3, puntob")
+        print("2, punto a")
+        print("3, punto b")
+        print("4, punto c")
         
         op = input("ingrese op: ")
         
@@ -24,5 +25,7 @@ def test():
             print(funcion)
 
         elif op == "3":
-            m.informarMov(c)
+            c.movAbril(m)
             
+        elif op == "4":
+            m.ordenar()

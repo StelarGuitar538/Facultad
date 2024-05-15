@@ -42,24 +42,20 @@ class gesMov:
                     else: saldo -= movimiento.getImp()
         return saldo
     
-
-            
-    def informarMov(self, c):
-        numTar = int(input("ingrese numero de tarjeta"))
-        nya = c.buscarCliente(numTar)
-        b=False
+    def buscarMov(self, numtar):
+        b= False
         i=0
-        while not b and i<len(self.__arregloMov):
-            print("entra al while")
-            if self.__arregloMov[i].getNumTar1() == numTar:
-                print("entra al if")
+        while not b and i< len(self.__arregloMov):
+            if self.__arregloMov[i].getNumTar1() == numtar:
                 b= True
             else: i+=1
-        
-        print(nya)    
-        if b==True:
-            print("el cliente tuvo movimientos en el mes de abril")
+            
+        if b== True:
+            print("hubieron movimientos en abril")
             
         else:
-            print("el cliente no tuvo movimientos en el mes de abril")
+            print("no hubieron movimientos en abril")
             
+    def ordenar(self):
+        self.__arregloMov.sort()
+        gesMov.mostrar(self)
