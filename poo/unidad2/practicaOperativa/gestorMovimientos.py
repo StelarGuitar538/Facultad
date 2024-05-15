@@ -35,7 +35,7 @@ class gesMov:
             
     def ActualizaSaldo(self, saldo, tar):
         for movimiento in self.__arregloMov:
-             if movimiento.getNumTar() == tar:
+             if movimiento.getNumTar1() == tar:
                     if movimiento.getMov() == "C":
                         saldo += movimiento.getImp()
                         print(saldo)
