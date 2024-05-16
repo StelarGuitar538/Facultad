@@ -1,5 +1,5 @@
-from claseEdificio import Edificio
-from claseDepartamentos import Dptos
+from poo.unidad3.ej1.claseEdificio import Edificio
+from poo.unidad3.ej1.claseDepartamentos import Dptos
 import csv
 
 class gestorEdificio:
