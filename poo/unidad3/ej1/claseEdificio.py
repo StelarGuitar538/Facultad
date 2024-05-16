@@ -1,4 +1,4 @@
-from claseDepartamentos import Dptos
+from poo.unidad3.ej1.claseDepartamentos import Dptos
 
 class Edificio:
     __id: int
@@ -7,7 +7,7 @@ class Edificio:
     __nomEmp: str
     __cantPisos: int
     __cantDeps: int
-    __departamentos: object
+    __departamentos: list
     
     def __init__(self, id, nom, dir, nomEmp, cantPisos, cantDeps):
         self.__id = id
