@@ -56,4 +56,3 @@ class gesVis:
                             print(f" {arreglo.getNya()}, {arreglo.getMail()}")
                             k = 0
                         j += 1
-                i += 1
