@@ -16,7 +16,7 @@ class Movimientos:
         return f"{self.__fecha}-{self.__desc}-{self.__imp}-{self.__tmov}"
     
     def __lt__ (self, other):
-       return self.__numtar < other.__numtar
+       return (self.__numtar < other.__numtar, self.__fecha < other.__fecha)
     
     def getNumTar1(self):
         return self.__numtar
