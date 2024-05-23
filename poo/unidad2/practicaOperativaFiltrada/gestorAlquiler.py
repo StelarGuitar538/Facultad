@@ -37,3 +37,10 @@ class gesAlquiler:
             total += impAlquiler
         print(f"total recaudado {total}")
      
+     
+    def buscarId(self, idc):
+        tm = 0
+        for i in self.__lista:
+            if i.getId() == idc:
+                tm += i.getMin()
+        print(f"el total de minutos que estuvo alquilada la cancha {idc} son {tm}")

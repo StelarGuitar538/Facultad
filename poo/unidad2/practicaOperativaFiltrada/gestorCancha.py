@@ -43,4 +43,6 @@ class gesCanchas:
             else:
                 i+=1
 
-            
+    def buscar(self, a):
+        idc = input("ingrese id a buscar ")
+        a.buscarId(idc)
