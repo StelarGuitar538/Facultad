@@ -23,4 +23,4 @@ def test():
             v.buscar(m)
             
         elif op == "3":
-            v.mostrar1()
+            v.mostrar1(m)
