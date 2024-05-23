@@ -27,3 +27,6 @@ class Alquiler:
     def getDuracion(self):
         return self.__duracion
     
+    def getMin(self):
+        return self.__minutosAlquilados
+    
