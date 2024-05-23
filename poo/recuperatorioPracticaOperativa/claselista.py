@@ -31,5 +31,5 @@ class Clientes:
     def getsaldo(self):
         return self.__saldo
         
-def setSaldo(self, s):
-    self.__saldo = s
+    def setSaldo(self, s):
+        self.__saldo = s
