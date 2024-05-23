@@ -29,11 +29,11 @@ class gesAlquiler:
         for alquiler in self.__lista:
             hora = alquiler.getHora()
             id1 = alquiler.getId()
-            duracion = alquiler.getDuracion()
-            impHora = c.impHora(alquiler.getId())
-            impAlquiler = impHora * alquiler.getDuracion()
+            duracion = alquiler.getDuracion() /60
+            impHora = c.impHora(id1)
+            impAlquiler = impHora * duracion
             
             print(f"{hora}    {id1}   {duracion}  {impHora} {impAlquiler}")
             total += impAlquiler
         print(f"total recaudado {total}")
-        
+     
