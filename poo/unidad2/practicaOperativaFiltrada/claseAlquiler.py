@@ -1,8 +1,8 @@
 class Alquiler:
     __nombre: str
     __id: str
-    __horaAlquilada: int
-    __minutosAlquilados: int
+    __horaAlquilada: str
+    __minutosAlquilados: str
     __duracion: int
     
     def __init__(self, n, id, ha, ma, d):
@@ -29,4 +29,5 @@ class Alquiler:
     
     def getMin(self):
         return self.__minutosAlquilados
+    
     
