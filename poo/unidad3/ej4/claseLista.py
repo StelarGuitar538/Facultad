@@ -52,11 +52,11 @@ class Lista:
                 ccd +=1
             aux = aux.getSig()
         print(f"la cantidad de libros {cl} y cd {ccd}")
-                
+                           
     
     def mostrar2(self):
         aux = self.__comienzo
         while aux!= None:
             publi = aux.getDato()
-            print (f"titulo {publi.getTitulo()}, categoria {publi.getCat()} importe de venta {publi.getPrecio()}")
+            print (f"titulo {publi.getTitulo()}, categoria {publi.getCat()} importe de venta {publi.calcularImporte()}")
             aux = aux.getSig()
