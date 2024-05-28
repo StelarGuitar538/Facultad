@@ -6,9 +6,9 @@ from claseLibros import Libro
 def test():
     l = Lista()
     cd = CD(130, "pepito", "orgullo y prejuicio", "novela", 35000)
-    li = Libro("pepito", "02/04/2019", 200, "orgullo y prejuicio", "novela", 35000)
+    li = Libro("pepito", "2019", 200, "orgullo y prejuicio", "novela", 35000)
     cd1 = CD(130, "juan", "los 3 chanchitos", "infantil", 10000)
-    li1 = Libro("juan", "02/04/2019", 120, "los 3 chanchitos", "infantil", 10000)
+    li1 = Libro("juan", "2010", 120, "los 3 chanchitos", "infantil", 10000)
     
     l.agregar(cd)
     l.agregar(li)

@@ -10,5 +10,13 @@ class Libro(Publi):
         self.__fecha =f
         self.__paginas = p
         
+    def getFecha(self):
+        return self.__fecha
+    
     def mostrarLi (self):
         print( f"{self.__autor} {self.__fecha} {self.__paginas} {self.getTitulo()} {self.getCat()} {self.getPrecio()}")
+        
+    def calcularImporte(self):
+        diferencia = 2024 - int(self.getFecha())
+        impVentali = (diferencia / 100) * self.getPrecio()
+        return impVentali

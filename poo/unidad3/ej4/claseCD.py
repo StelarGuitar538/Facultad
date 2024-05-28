@@ -10,3 +10,8 @@ class CD(Publi):
             
     def mostrarCD (self):
         print(f"{self.__minRep} {self.__narrador} {self.getTitulo()} {self.getCat()} {self.getPrecio()}")
+        
+    def calcularImporte(self):
+        impVentacd = self.getPrecio() * 1.10
+        return impVentacd
+    

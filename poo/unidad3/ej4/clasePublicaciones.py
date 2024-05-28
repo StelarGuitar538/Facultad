@@ -20,4 +20,7 @@ class Publi:
     def getPrecio(self):
         return self.__precio
     
+    def calcularImporte(self):
+        pass
+    
     
