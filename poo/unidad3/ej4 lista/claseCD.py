@@ -1,6 +1,7 @@
-class Cd:
+from clasePubli import Publi
+class Cd(Publi):
     __repmin: int
-    __narrador: int
+    __narrador: str
 
     def __init__(self, rm, n, t, c, p):
         super().__init__(t, c, p)
@@ -8,9 +9,8 @@ class Cd:
         self.__narrador = n
 
              
-    def mostrarCD (self):
-        print(f"{self.__minRep} {self.__narrador} {self.getTitulo()} {self.getCat()} {self.getPrecio()}")
+    def __str__ (self):
+        return(f" {self.__repmin} {self.__narrador} {self.getTitulo()} {self.getCat()} {self.getPrecio()}")
         
     def calcularImporte(self):
-        impVentacd = self.getPrecio() * 1.10
-        return impVentacd
+        return  self.getPrecio() * 1.10

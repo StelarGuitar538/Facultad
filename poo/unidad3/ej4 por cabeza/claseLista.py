@@ -39,6 +39,7 @@ class Lista:
                 else:
                     print(f"La publicación en la posición {posicion} es de un tipo desconocido.")
                     
+                    
     def cantPubli(self):
         cl =0
         ccd = 0
