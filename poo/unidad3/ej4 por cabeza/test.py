@@ -10,6 +10,7 @@ def test():
     cd1 = CD(130, "juan", "los 3 chanchitos", "infantil", 10000)
     li1 = Libro("juan", "2010", 120, "los 3 chanchitos", "infantil", 10000)
     
+    
     l.agregar(cd)
     l.agregar(li)
     l.agregar(cd1)

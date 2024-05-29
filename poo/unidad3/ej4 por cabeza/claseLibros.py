@@ -20,3 +20,4 @@ class Libro(Publi):
         diferencia = 2024 - int(self.getFecha())
         impVentali = (diferencia / 100) * self.getPrecio()
         return impVentali
+    

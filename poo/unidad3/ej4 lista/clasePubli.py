@@ -8,8 +8,8 @@ class Publi:
         self.__categoria = c
         self.__precio = p
 
-    def mostrarPubli(self):
-        print(f"{self.__titulo} {self.__categoria} {self.__precio}")
+    def __str__(self):
+        return (f"{self.__titulo} {self.__categoria} {self.__precio}")
         
     def getTitulo(self):
         return self.__titulo 
