@@ -61,3 +61,5 @@ class Lista:
             publi = aux.getDato()
             print (f"titulo {publi.getTitulo()}, categoria {publi.getCat()} importe de venta {publi.calcularImporte()}")
             aux = aux.getSig()
+            
+  
