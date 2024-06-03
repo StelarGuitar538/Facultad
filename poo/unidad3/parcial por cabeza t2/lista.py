@@ -33,11 +33,29 @@ class Lista:
             print("posicion fuera de rango")
         else:
             vehiculo = aux.getDato()
-            print(f"Tipo de vehiculo: {type(vehiculo)}")
-            print(f"Es instancia de Autobuses: {isinstance(vehiculo, Autobuses)}")
-            print(f"Es instancia de Vanes: {isinstance(vehiculo, Vanes)}")
             if isinstance(vehiculo, Autobuses):
                 print(f"la posicion {pos} es un autobus")
             elif isinstance(vehiculo, Vanes):
                 print(f"la posicion {pos} es una van")
                     
+                    
+    def punto3(self):
+        cv = 0
+        ca = 0
+        aux = self.__comienzo
+        
+        while aux != None:
+            vehi = aux.getDato()
+            if isinstance(vehi, Autobuses):
+                ca +=1
+            else:
+                cv +=1
+            aux = aux.getSig()
+        print(f"la cantidad de autobeses es {ca} y de vanes es {cv}")
+        
+    def punto4(self):
+        aux = self.__comienzo
+        while aux != None:
+            vehi = aux.getDato()
+            print(f"{vehi.getModelo()} {vehi.getAnoFabri()} {vehi.getCapPas()} {vehi.tarifa()}")
+            aux = aux.getSig()

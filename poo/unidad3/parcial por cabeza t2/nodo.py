@@ -15,5 +15,5 @@ class Nodo:
         self.__sig =sig
         
     def getDato(self):
-        self.__vehiculos
+        return self.__vehiculos
         

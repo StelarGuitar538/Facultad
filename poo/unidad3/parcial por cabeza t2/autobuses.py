@@ -17,3 +17,11 @@ class Autobuses(Vehiculos):
     
     def mostrarA(self):
         print(f"{self.__servicio} {self.__turno} {self.getMarca()} {self.getModelo()} {self.getAnoFabri()} {self.getCapPas()} {self.getPlazas()} {self.getDistancia()} {self.getTarifa()}")
+        
+    def tarifa(self):
+        if self.getServicio() == "turismo" and self.getTurno() == "nocturno":
+            tarifa = self.getTarifa() * 1.20
+        else:
+            tarifa = self.getTarifa() *1.05
+        return tarifa    
+        
