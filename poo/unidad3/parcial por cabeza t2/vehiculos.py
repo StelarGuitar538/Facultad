@@ -40,4 +40,5 @@ class Vehiculos:
     def mostrar(self):
         print(f"{self.__marca} {self.__modelo} {self.__anoFabri} {self.__capPas} {self.__plazas} {self.__distancia} {self.__tarifa}")
         
-        
+    def tarifa(self):
+        pass

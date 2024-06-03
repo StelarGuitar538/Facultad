@@ -13,4 +13,9 @@ class Vanes(Vehiculos):
     def mostrarV(self):
          print(f"{self.__tCarroceria} {self.getMarca()} {self.getModelo()} {self.getAnoFabri()} {self.getCapPas()} {self.getPlazas()} {self.getDistancia()} {self.getTarifa()}")
          
-         
+    def tarifa(self):
+        if self.getT() == "minivan":
+            tarifa = self.getTarifa() *0.9
+        else:
+            tarifa = self.getTarifa() *1.025
+        return tarifa
