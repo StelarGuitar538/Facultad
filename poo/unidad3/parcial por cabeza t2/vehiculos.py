@@ -1,4 +1,5 @@
-class Vehiculos:
+from abc import ABC, abstractmethod 
+class Vehiculos(ABC):
     __marca: str
     __modelo: str
     __anoFabri: int
@@ -40,5 +41,6 @@ class Vehiculos:
     def mostrar(self):
         print(f"{self.__marca} {self.__modelo} {self.__anoFabri} {self.__capPas} {self.__plazas} {self.__distancia} {self.__tarifa}")
         
+    @abstractmethod
     def tarifa(self):
         pass

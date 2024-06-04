@@ -1,2 +1,2 @@
-SQLALCHEMY_DATABASE_URI = 'unidad5/paginaWeb/datos.sqlite3'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///datos.sqlite3'
 SQLALCHEMY_TRACK_MODIFICATIONS = False

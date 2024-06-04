@@ -3,35 +3,40 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy(app)
 
-class sucursal(db.Model):
+class Sucursal(db.Model):
     __tablename__ = 'sucursal'
     id = db.Column(db.Integer, primary_key=True)
     numero = db.Column(db.Integer)
-    provincia = db.Column(db.String(20))
-    localidad = db.Column(db.String(20))
-    direccion = db.Column(db.String(200))
-    
-class repartidor(db.Model):
+    provincia = db.Column(db.String(30))
+    localidad = db.Column(db.String(30))
+    direccion = db.Column(db.String(60))
+
+class Repartidor(db.Model):
     __tablename__ = 'repartidor'
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(20))
-    dni = db.Column(db.Integer)
-    
-class paquete(db.Model):
+    numero = db.Column(db.Integer)
+    nombre = db.Column(db.String(60))
+    dni = db.Column(db.String(8))
+    idsucursal = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
+
+class Paquete(db.Model):
     __tablename__ = 'paquete'
     id = db.Column(db.Integer, primary_key=True)
-    numeroEnvio = db.Column(db.Integer)
+    numeroenvio = db.Column(db.Integer)
     peso = db.Column(db.Integer)
-    nombreDestinatario = db.Column(db.String(20))
-    direccionDestinatario = db.Column(db.String(200))
+    nomdestinatario = db.Column(db.String(60))
+    dirdestinatario = db.Column(db.String(100))
     entregado = db.Column(db.Boolean)
-    observaciones = db.Column(db.String(200))
-    repartidor = db.Column(db.Integer, db.ForeignKey('repartidor.id'))
-    sucursal = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
-    
-class transporte(db.Model):
+    observaciones = db.Column(db.Text)
+    idsucursal = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
+    idtransporte = db.Column(db.Integer, db.ForeignKey('transporte.id'))
+    idrepartidor = db.Column(db.Integer, db.ForeignKey('repartidor.id'))
+
+class Transporte(db.Model):
     __tablename__ = 'transporte'
     id = db.Column(db.Integer, primary_key=True)
-    numeroTransporte = db.Column(db.Integer)
-    fechaHoraSaida = db.Column(db.DateTime)
-    fechaHoraLLegada = db.Column(db.DateTime)
+    numerotransporte = db.Column(db.Integer)
+    fechahorasalida = db.Column(db.DateTime)
+    fechahorallegada = db.Column(db.DateTime)
+    idsucursal = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
+
