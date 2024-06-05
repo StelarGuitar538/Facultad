@@ -41,6 +41,6 @@ class Vehiculos(ABC):
     def mostrar(self):
         print(f"{self.__marca} {self.__modelo} {self.__anoFabri} {self.__capPas} {self.__plazas} {self.__distancia} {self.__tarifa}")
         
-    @abstractmethod
-    def tarifa(self):
+@abstractmethod
+def tarifa(self):
         pass
