@@ -19,14 +19,6 @@ class Paquete:
         self.__observaciones = observaciones
         self.__id = id
         
-    def setRepartidor(self, repartidor):
-        self.__repartidor.append(repartidor)
-    
-    def setTransporte(self, transporte):
-        self.__transporte.append(transporte)
-    
-    def setSucursal(self, sucursal):
-        self.__sucursal.append(sucursal)
     
     def getNumeroEnvio(self):
         return self.__numeroEnvio

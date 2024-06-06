@@ -9,9 +9,9 @@
 <body>
     <div class="container">
         <h1 class="titulo">Logi Pack</h1>
-        <form action="http://localhost:5000/bienvenida" method="post">
+        <form action="{{ url_for('funcion1') }}">
             <label for="despachante">ID de Despachante</label>
-            <input type="text" id="despachante" name="despachante" placeholder="ID de Despachante">
+            <input type="text" id="despachante" name="despachante" placeholder="ID de Despachante" required>
 
             <input type="submit" value="Entrar">
         </form>
