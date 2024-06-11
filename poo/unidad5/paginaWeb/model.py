@@ -1,6 +1,7 @@
 from __main__ import app
 from flask_sqlalchemy import SQLAlchemy
 
+
 db = SQLAlchemy(app)
 
 class Sucursal(db.Model):
@@ -39,4 +40,3 @@ class Transporte(db.Model):
     fechahorasalida = db.Column(db.DateTime)
     fechahorallegada = db.Column(db.DateTime)
     idsucursal = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
-
