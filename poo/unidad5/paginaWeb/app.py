@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import random
+from datetime import datetime
 
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
-from model import db, Sucursal, Paquete  # Importa db y Sucursal desde model.py
+from model import db, Sucursal, Paquete, Transporte  # Importa db y Sucursal desde model.py
 
 # Inicializa SQLAlchemy con la aplicación Flask
 #db.init_app(app)
@@ -45,11 +46,44 @@ def funcion2():
         paquete = Paquete(numeroenvio = numeroenvio, peso = peso, nomdestinatario = nomdestinatario, dirdestinatario = dirdestinatario, entregado = entregado, observaciones = observaciones, idsucursal = idsucursal, idtransporte = idtransporte, idrepartidor = idrepartidor)
         db.session.add(paquete)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('funcion1'))
     else:
         sucursales = Sucursal.query.order_by(Sucursal.id).all()
         return render_template('funcion2.html', sucursales=sucursales)
     
+@app.route("/funcion3", methods=['GET', 'POST'])
+def funcion3():
+    if request.method == 'POST':
+        paquete_ids = request.form.getlist('paquetes')
+        id_sucursal = request.form.get('id_sucursal')
+        if not paquete_ids:
+            return redirect(url_for('funcion3', sucursal=id_sucursal))
+        
+        # Crear un nuevo transporte
+        transporte = Transporte(
+            numerotransporte=random.randint(1000, 1500),
+            fechahorasalida=datetime.now(),
+            fechahorallegada=None,
+            idsucursal=id_sucursal
+        )
+        db.session.add(transporte)
+        db.session.commit()
+        
+        # Asociar paquetes con el transporte
+        for paquete_id in paquete_ids:
+            paquete = Paquete.query.get(paquete_id)
+            paquete.idtransporte = transporte.id
+            db.session.commit()
+        
+        return redirect(url_for('funcion1'))
+    else:
+        id_sucursal = request.args.get('sucursal')
+        if not id_sucursal:
+            return redirect(url_for('funcion1'))
+        
+        paquetes = Paquete.query.filter_by(idsucursal=id_sucursal, entregado=False, idrepartidor=None).all()
+        return render_template('funcion3.html', paquetes=paquetes, id_sucursal=id_sucursal)
+
 
 if __name__ == '__main__':
     with app.app_context():

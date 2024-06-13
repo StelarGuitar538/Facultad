@@ -1,7 +1,12 @@
-{% extends "baseTemplates.html" %}
-{% block title %}Seleccione sucursal{% endblock %}
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/funcion1.css') }}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/funcion1.css') }}">
+</head>
+<body>
     <div class="container">
         <h1>Seleccione sucursal</h1>
         <table>
@@ -18,10 +23,12 @@
                         <td>{{ sucursal.numero }}</td>
                         <td>{{ sucursal.provincia }}</td>
                         <td>{{ sucursal.localidad }}</td>
-                        <td><a href="/funcion2?sucursal={{ sucursal.id }}">Ver</a></td>
+                        <td><a href="/funcion2?sucursal={{ sucursal.id }}">registrar paquete</a></td>
+                        <td><a href="/funcion3?sucursal={{ sucursal.id }}">salida de transporte</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-{% endblock %}
+</body>
+</html>
