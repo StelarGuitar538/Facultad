@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+import random
 
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
-from model import db, Sucursal  # Importa db y Sucursal desde model.py
+from model import db, Sucursal, Paquete  # Importa db y Sucursal desde model.py
 
 # Inicializa SQLAlchemy con la aplicación Flask
 #db.init_app(app)
@@ -26,11 +27,29 @@ def funcion1():
     sucursales = Sucursal.query.order_by(Sucursal.numero).all()
     return render_template('funcion1.html', sucursales=sucursales)
 
-@app.route("/sucursal/<int:sucursal_id>/ingresar")
-def ingresar_sucursal(sucursal_id):
-    sucursal = Sucursal.query.get_or_404(sucursal_id)
-    # Aquí puedes realizar cualquier acción relacionada con ingresar a la sucursal
-    return render_template('sucursal_detail.html', sucursal=sucursal)
+@app.route("/funcion2", methods=['GET', 'POST'])
+def funcion2():
+    if request.method == 'POST':
+        print(request.form)
+        idsucursal = request.form.get('idsucursal')
+        peso = request.form.get('peso')
+        dirdestinatario = request.form.get('dirdestinatario')
+        nomdestinatario = request.form.get('nomdestinatario')
+        if not nomdestinatario:
+            return redirect(url_for('funcion2'))
+        entregado = 'entregado' in request.form #true si el usuario seleccionó entregado
+        observaciones = request.form.get('observaciones')
+        numeroenvio = random.randint(1000, 1500)
+        idtransporte = request.form.get('idTransporte')
+        idrepartidor = request.form.get('idRepartidor')
+        paquete = Paquete(numeroenvio = numeroenvio, peso = peso, nomdestinatario = nomdestinatario, dirdestinatario = dirdestinatario, entregado = entregado, observaciones = observaciones, idsucursal = idsucursal, idtransporte = idtransporte, idrepartidor = idrepartidor)
+        db.session.add(paquete)
+        db.session.commit()
+        return redirect(url_for('index'))
+    else:
+        sucursales = Sucursal.query.order_by(Sucursal.id).all()
+        return render_template('funcion2.html', sucursales=sucursales)
+    
 
 if __name__ == '__main__':
     with app.app_context():
