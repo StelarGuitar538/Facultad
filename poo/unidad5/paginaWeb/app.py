@@ -26,6 +26,12 @@ def funcion1():
     sucursales = Sucursal.query.order_by(Sucursal.numero).all()
     return render_template('funcion1.html', sucursales=sucursales)
 
+@app.route("/sucursal/<int:sucursal_id>/ingresar")
+def ingresar_sucursal(sucursal_id):
+    sucursal = Sucursal.query.get_or_404(sucursal_id)
+    # Aquí puedes realizar cualquier acción relacionada con ingresar a la sucursal
+    return render_template('sucursal_detail.html', sucursal=sucursal)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
