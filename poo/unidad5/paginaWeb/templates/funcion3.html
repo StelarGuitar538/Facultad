@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Transporte</title>
+    <title>Seleccionar Paquetes para Transporte</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/funcion3.css') }}">
 </head>
 <body>
@@ -20,13 +20,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for paquete in paquetes %}
+                    {% if paquetes %}
+                        {% for paquete in paquetes %}
+                            <tr>
+                                <td><input type="checkbox" name="paquetes" value="{{ paquete.id }}"></td>
+                                <td>{{ paquete.numeroenvio }}</td>
+                                <td>{{ paquete.dirdestinatario }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
                         <tr>
-                            <td><input type="checkbox" name="paquetes" value="{{ paquete.id }}"></td>
-                            <td>{{ paquete.numeroenvio }}</td>
-                            <td>{{ paquete.dirdestinatario }}</td>
+                            <td colspan="3">No hay paquetes pendientes</td>
                         </tr>
-                    {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
             <button type="submit">Registrar Transporte</button>

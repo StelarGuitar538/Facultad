@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import random
 from datetime import datetime
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'tu_clave_secreta_aqui'
 app.config.from_pyfile('config.py')
 from model import db, Sucursal, Paquete, Transporte  # Importa db y Sucursal desde model.py
 
@@ -31,58 +32,95 @@ def funcion1():
 @app.route("/funcion2", methods=['GET', 'POST'])
 def funcion2():
     if request.method == 'POST':
-        print(request.form)
-        idsucursal = request.form.get('idsucursal')
-        peso = request.form.get('peso')
-        dirdestinatario = request.form.get('dirdestinatario')
-        nomdestinatario = request.form.get('nomdestinatario')
-        if not nomdestinatario:
-            return redirect(url_for('funcion2'))
-        entregado = 'entregado' in request.form #true si el usuario seleccionó entregado
-        observaciones = request.form.get('observaciones')
-        numeroenvio = random.randint(1000, 1500)
-        idtransporte = request.form.get('idTransporte')
-        idrepartidor = request.form.get('idRepartidor')
-        paquete = Paquete(numeroenvio = numeroenvio, peso = peso, nomdestinatario = nomdestinatario, dirdestinatario = dirdestinatario, entregado = entregado, observaciones = observaciones, idsucursal = idsucursal, idtransporte = idtransporte, idrepartidor = idrepartidor)
-        db.session.add(paquete)
-        db.session.commit()
+        try:
+            print(request.form)
+            idsucursal = request.form.get('idsucursal')
+            peso = request.form.get('peso')
+            dirdestinatario = request.form.get('dirdestinatario')
+            nomdestinatario = request.form.get('nomdestinatario')
+            if not nomdestinatario:
+                return redirect(url_for('funcion2'))
+            entregado = 'entregado' in request.form  
+            observaciones = request.form.get('observaciones')
+            numeroenvio = random.randint(1000, 1500)
+            idtransporte = request.form.get('idtransporte')  
+            idrepartidor = request.form.get('idrepartidor')  
+
+            paquete = Paquete(
+                numeroenvio=numeroenvio,
+                peso=peso,
+                nomdestinatario=nomdestinatario,
+                dirdestinatario=dirdestinatario,
+                entregado=entregado,
+                observaciones=observaciones,
+                idsucursal=idsucursal,
+                idtransporte=idtransporte,
+                idrepartidor=idrepartidor
+            )
+            db.session.add(paquete)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            flash("Error al guardar paquete", "error")
         return redirect(url_for('funcion1'))
     else:
         sucursales = Sucursal.query.order_by(Sucursal.id).all()
         return render_template('funcion2.html', sucursales=sucursales)
+
     
 @app.route("/funcion3", methods=['GET', 'POST'])
 def funcion3():
     if request.method == 'POST':
-        paquete_ids = request.form.getlist('paquetes')
-        id_sucursal = request.form.get('id_sucursal')
-        if not paquete_ids:
-            return redirect(url_for('funcion3', sucursal=id_sucursal))
-        
-        # Crear un nuevo transporte
-        transporte = Transporte(
-            numerotransporte=random.randint(1000, 1500),
-            fechahorasalida=datetime.now(),
-            fechahorallegada=None,
-            idsucursal=id_sucursal
-        )
-        db.session.add(transporte)
-        db.session.commit()
-        
-        # Asociar paquetes con el transporte
-        for paquete_id in paquete_ids:
-            paquete = Paquete.query.get(paquete_id)
-            paquete.idtransporte = transporte.id
-            db.session.commit()
-        
-        return redirect(url_for('funcion1'))
-    else:
-        id_sucursal = request.args.get('sucursal')
-        if not id_sucursal:
+        try:
+            paquete_ids = request.form.getlist('paquetes')
+            id_sucursal = request.form.get('id_sucursal')
+            if paquete_ids and id_sucursal:
+                # Crear un nuevo transporte
+                transporte = Transporte(
+                    numerotransporte=random.randint(1000, 1500),
+                    fechahorasalida=datetime.now(),
+                    fechahorallegada=None,
+                    idsucursal=id_sucursal
+                )
+                db.session.add(transporte)
+                db.session.commit()
+                
+                # Asociar paquetes con el transporte
+                for paquete_id in paquete_ids:
+                    paquete = Paquete.query.get(paquete_id)
+                    if paquete:
+                        paquete.idtransporte = transporte.id
+                        db.session.commit()
+                flash("Paquetes asociados con el transporte", "success")
+            else:
+                flash("No se han seleccionado paquetes", "error")
+            
+            # Redirigir a funcion1 después de registrar el transporte
             return redirect(url_for('funcion1'))
         
-        paquetes = Paquete.query.filter_by(idsucursal=id_sucursal, entregado=False, idrepartidor=None).all()
-        return render_template('funcion3.html', paquetes=paquetes, id_sucursal=id_sucursal)
+        except Exception as e:
+            db.session.rollback()
+            flash("Error al guardar transporte", "error")
+            return redirect(url_for('funcion3', sucursal=id_sucursal))
+    
+    elif request.method == 'GET':
+        sucursal_id = request.args.get('sucursal')
+        if not sucursal_id:
+            flash("No se ha especificado la sucursal", "error")
+            return redirect(url_for('funcion1'))
+        
+        # Obtener paquetes que no están entregados y no tienen repartidor asignado
+        paquetes = Paquete.query.filter_by(entregado=0, idrepartidor=0).all()
+        
+        # Verificar si se encontraron paquetes
+        if not paquetes:
+            flash("No hay paquetes pendientes", "error")
+            print("No hay paquetes pendientes")
+        else:
+            print(f"Paquetes encontrados: {len(paquetes)}")
+        
+        return render_template('funcion3.html', paquetes=paquetes, id_sucursal=sucursal_id)
+
 
 
 if __name__ == '__main__':
