@@ -21,17 +21,17 @@ class Repartidor(db.Model):
     idsucursal = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
 
 class Paquete(db.Model):
-    __tablename__ = 'paquete'
     id = db.Column(db.Integer, primary_key=True)
-    numeroenvio = db.Column(db.Integer)
-    peso = db.Column(db.Integer)
-    nomdestinatario = db.Column(db.String(60))
-    dirdestinatario = db.Column(db.String(100))
-    entregado = db.Column(db.Boolean)
-    observaciones = db.Column(db.Text)
-    idsucursal = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
-    idtransporte = db.Column(db.Integer, db.ForeignKey('transporte.id'))
-    idrepartidor = db.Column(db.Integer, db.ForeignKey('repartidor.id'))
+    numeroenvio = db.Column(db.Integer, unique=True, nullable=False)
+    peso = db.Column(db.Float, nullable=False)
+    nomdestinatario = db.Column(db.String(80), nullable=False)
+    dirdestinatario = db.Column(db.String(120), nullable=False)
+    entregado = db.Column(db.Boolean, nullable=False, default=False)
+    observaciones = db.Column(db.String(200))
+    idsucursal = db.Column(db.Integer, db.ForeignKey('sucursal.id'), nullable=False)
+    idtransporte = db.Column(db.Integer, db.ForeignKey('transporte.id'), nullable=True)
+    idrepartidor = db.Column(db.Integer, db.ForeignKey('repartidor.id'), nullable=True)
+
 
 class Transporte(db.Model):
     __tablename__ = 'transporte'

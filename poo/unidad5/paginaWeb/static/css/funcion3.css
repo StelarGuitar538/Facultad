@@ -89,3 +89,24 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #e0f7fa 25%, #ffffff 100%);
 }
+
+
+.flash-messages {
+    margin: 10px 0;
+}
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}

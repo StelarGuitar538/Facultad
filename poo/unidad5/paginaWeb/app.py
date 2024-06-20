@@ -40,11 +40,14 @@ def funcion2():
             nomdestinatario = request.form.get('nomdestinatario')
             if not nomdestinatario:
                 return redirect(url_for('funcion2'))
-            entregado = 'entregado' in request.form  
+            entregado = request.form.get('entregado') == '1'  
             observaciones = request.form.get('observaciones')
             numeroenvio = random.randint(1000, 1500)
             idtransporte = request.form.get('idtransporte')  
             idrepartidor = request.form.get('idrepartidor')  
+            
+            idtransporte = int(idtransporte) if idtransporte else None
+            idrepartidor = int(idrepartidor) if idrepartidor else None
 
             paquete = Paquete(
                 numeroenvio=numeroenvio,
@@ -59,6 +62,7 @@ def funcion2():
             )
             db.session.add(paquete)
             db.session.commit()
+            flash("Paquete guardado con éxito", "success")
         except Exception as e:
             db.session.rollback()
             flash("Error al guardar paquete", "error")
@@ -91,7 +95,7 @@ def funcion3():
                     if paquete:
                         paquete.idtransporte = transporte.id
                         db.session.commit()
-                flash("Paquetes asociados con el transporte", "success")
+                flash("Paquetes asociados con el transporte correctamente", "success")
             else:
                 flash("No se han seleccionado paquetes", "error")
             
@@ -110,7 +114,7 @@ def funcion3():
             return redirect(url_for('funcion1'))
         
         # Obtener paquetes que no están entregados y no tienen repartidor asignado
-        paquetes = Paquete.query.filter_by(entregado=0, idrepartidor=0).all()
+        paquetes = Paquete.query.filter_by(entregado='0', idrepartidor=None).all()
         
         # Verificar si se encontraron paquetes
         if not paquetes:
@@ -120,6 +124,38 @@ def funcion3():
             print(f"Paquetes encontrados: {len(paquetes)}")
         
         return render_template('funcion3.html', paquetes=paquetes, id_sucursal=sucursal_id)
+    
+    
+@app.route("/funcion4", methods=['GET', 'POST'])
+def funcion4():
+    if request.method == 'POST':
+        try:
+            transporte_id = request.form.get('transporte_id')
+            transporte = Transporte.query.get(transporte_id)
+            if transporte and not transporte.fechahorallegada:
+                transporte.fechahorallegada = datetime.now()
+                db.session.commit()
+                flash("Llegada del transporte registrada con éxito", "success")
+            else:
+                flash("Transporte no válido o ya registrado", "error")
+        except Exception as e:
+            db.session.rollback()
+            flash("Error al registrar llegada del transporte", "error")
+        return redirect(url_for('funcion1'))
+    
+    elif request.method == 'GET':
+        sucursal_id = request.args.get('sucursal')
+        if not sucursal_id:
+            flash("No se ha especificado la sucursal", "error")
+            return redirect(url_for('funcion1'))
+
+        transportes = Transporte.query.filter_by(idsucursal=sucursal_id, fechahorallegada=None).all()
+        
+        if not transportes:
+            flash("No hay transportes pendientes de llegada", "error")
+        
+        return render_template('funcion4.html', transportes=transportes)
+
 
 
 
