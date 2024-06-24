@@ -21,7 +21,7 @@ body {
 }
 
 /* Estilos para el encabezado */
-h1 {
+h1 , h3{
     text-align: center;
     color: #00796b; 
     font-size: 2rem; 
