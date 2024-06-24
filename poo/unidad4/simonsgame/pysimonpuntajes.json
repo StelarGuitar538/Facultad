@@ -1,0 +1,56 @@
+[
+    {
+        "nombre": "daniel",
+        "fecha": "2024-06-24",
+        "hora": "12:31:52",
+        "puntaje": 2
+    },
+    {
+        "nombre": "ergsr",
+        "fecha": "2024-06-24",
+        "hora": "12:45:41",
+        "puntaje": 2
+    },
+    {
+        "nombre": "ergsr",
+        "fecha": "2024-06-24",
+        "hora": "12:45:55",
+        "puntaje": 2
+    },
+    {
+        "nombre": "pepe",
+        "fecha": "2024-06-24",
+        "hora": "09:17:28",
+        "puntaje": 1
+    },
+    {
+        "nombre": "ergsr",
+        "fecha": "2024-06-24",
+        "hora": "12:45:23",
+        "puntaje": 1
+    },
+    {
+        "nombre": "ergsr",
+        "fecha": "2024-06-24",
+        "hora": "12:45:29",
+        "puntaje": 1
+    },
+    {
+        "nombre": "daniel",
+        "fecha": "2024-06-24",
+        "hora": "12:31:56",
+        "puntaje": 0
+    },
+    {
+        "nombre": "veloz",
+        "fecha": "2024-06-24",
+        "hora": "12:33:14",
+        "puntaje": 0
+    },
+    {
+        "nombre": "sgrtgst",
+        "fecha": "2024-06-24",
+        "hora": "13:06:03",
+        "puntaje": 0
+    }
+]

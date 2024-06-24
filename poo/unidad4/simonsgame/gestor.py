@@ -1,10 +1,11 @@
 from clasejugador import Jugador
 import json
 from tkinter import messagebox
-class GestorDeJugadores:
+
+class GestorJugadores:
     def __init__(self, archivo):
-        self.archivo = archivo
-        self.jugadores = self.cargar_jugadores() 
+        self.archivo = archivo  # ruta del archivo json
+        self.jugadores = self.cargar_jugadores()
 
     def cargar_jugadores(self):
         try:
@@ -24,5 +25,5 @@ class GestorDeJugadores:
 
     def ver_puntajes(self):
         self.jugadores.sort(reverse=True)
-        puntajes = "\n".join([f"Nombre: {jugador.get_nombre()}, Puntaje: {jugador.get_puntaje()}, Fecha: {jugador.get_fecha()}, Hora: {jugador.get_hora()}, Nivel: {jugador.get_nivel()}" for jugador in self.jugadores])
+        puntajes = "\n".join([f"Nombre: {jugador.get_nombre()}, Puntaje: {jugador.get_puntaje()}, Fecha: {jugador.get_fecha()}, Hora: {jugador.get_hora()}" for jugador in self.jugadores])
         messagebox.showinfo("Puntajes", puntajes)
