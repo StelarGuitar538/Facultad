@@ -7,10 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'tu_clave_secreta_aqui'
 app.config.from_pyfile('config.py')
-from model import db, Sucursal, Paquete, Transporte  # Importa db y Sucursal desde model.py
-
-# Inicializa SQLAlchemy con la aplicación Flask
-#db.init_app(app)
+from model import db, Sucursal, Paquete, Transporte
 
 @app.route('/')
 def inicio():
@@ -22,7 +19,7 @@ def index():
     if role == 'despachante':
         return redirect(url_for('funcion1'))
     elif role == 'repartidor':
-        return render_template('repartidor.html')
+        return render_template('index.html')
 
 @app.route("/funcion1")
 def funcion1():
@@ -45,9 +42,6 @@ def funcion2():
             numeroenvio = random.randint(1000, 1500)
             idtransporte = request.form.get('idtransporte')  
             idrepartidor = request.form.get('idrepartidor')  
-            
-            idtransporte = int(idtransporte) if idtransporte else None
-            idrepartidor = int(idrepartidor) if idrepartidor else None
 
             paquete = Paquete(
                 numeroenvio=numeroenvio,
@@ -79,7 +73,7 @@ def funcion3():
             paquete_ids = request.form.getlist('paquetes')
             id_sucursal = request.form.get('id_sucursal')
             if paquete_ids and id_sucursal:
-                # Crear un nuevo transporte
+                
                 transporte = Transporte(
                     numerotransporte=random.randint(1000, 1500),
                     fechahorasalida=datetime.now(),
@@ -89,7 +83,7 @@ def funcion3():
                 db.session.add(transporte)
                 db.session.commit()
                 
-                # Asociar paquetes con el transporte
+                
                 for paquete_id in paquete_ids:
                     paquete = Paquete.query.get(paquete_id)
                     if paquete:
@@ -99,7 +93,6 @@ def funcion3():
             else:
                 flash("No se han seleccionado paquetes", "error")
             
-            # Redirigir a funcion1 después de registrar el transporte
             return redirect(url_for('funcion1'))
         
         except Exception as e:
@@ -113,13 +106,11 @@ def funcion3():
             flash("No se ha especificado la sucursal", "error")
             return redirect(url_for('funcion1'))
         
-        # Obtener paquetes que no están entregados y no tienen repartidor asignado
+        
         paquetes = Paquete.query.filter_by(entregado='0', idrepartidor=None).all()
         
-        # Verificar si se encontraron paquetes
         if not paquetes:
             flash("No hay paquetes pendientes", "error")
-            print("No hay paquetes pendientes")
         else:
             print(f"Paquetes encontrados: {len(paquetes)}")
         

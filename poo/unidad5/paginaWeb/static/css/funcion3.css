@@ -1,9 +1,13 @@
-/* Resetear estilos y establecer fuente predeterminada */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5; /* Fondo suave */
+    background-color: #f5f5f5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa 25%, #ffffff 100%);
 }
 
 /* Contenedor principal */
@@ -12,49 +16,40 @@ body {
     margin: 50px auto;
     padding: 20px;
     background-color: #ffffff;
-    border-radius: 8px; /* Bordes ligeramente redondeados */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
 }
 
 /* Estilos para el encabezado */
 h1 {
     text-align: center;
     color: #333;
-    font-size: 2rem; /* Tamaño de fuente del encabezado */
-    margin-bottom: 20px; /* Espaciado inferior */
+    font-size: 2rem; 
+    margin-bottom: 20px; 
 }
 
 /* Estilos para la tabla */
 table {
     width: 100%;
-    border-collapse: collapse; /* Eliminar espacio entre celdas */
-    margin-top: 20px; /* Espaciado superior */
+    border-collapse: collapse; 
+    margin-top: 20px; 
 }
 
 th, td {
-    padding: 12px 15px; /* Espaciado interno en celdas */
-    text-align: left; /* Alineación del texto */
-    border-bottom: 1px solid #ddd; /* Línea inferior suave */
+    padding: 12px 15px; 
+    text-align: left; 
+    border-bottom: 1px solid #ddd; 
 }
 
 th {
-    background-color: #f2f2f2; /* Fondo de encabezado de tabla */
-    color: #333; /* Color del texto de encabezado */
+    background-color: #f2f2f2; 
+    color: #333; 
 }
 
 tr:hover {
-    background-color: #f1f1f1; /* Color de fondo al pasar el ratón */
+    background-color: #f1f1f1; 
 }
 
-/* Estilos para los enlaces */
-a {
-    color: #007BFF; /* Color de los enlaces */
-    text-decoration: none; /* Sin subrayado */
-}
-
-a:hover {
-    text-decoration: underline; /* Subrayado al pasar el ratón */
-}
 
 /* Estilos para el formulario */
 form {
@@ -65,30 +60,21 @@ form {
 /* Estilos para los botones */
 form button {
     padding: 12px;
-    background-color: #00796b; /* Color de fondo del botón */
+    background-color: #00796b; 
     color: white;
     border: none;
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 18px; /* Tamaño de fuente más grande */
+    border-radius: 5px; 
+    font-size: 18px; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 10px; /* Espaciado superior */
+    margin-top: 10px; 
 }
 
-/* Efecto hover para el botón */
 form button:hover {
-    background-color: #004d40; /* Color de fondo del botón al pasar el ratón */
-    transform: translateY(-2px); /* Efecto de elevación */
+    background-color: #004d40; 
+    transform: translateY(-2px); 
 }
 
-/* Estilos para el cuerpo del documento */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #e0f7fa 25%, #ffffff 100%);
-}
 
 
 .flash-messages {
